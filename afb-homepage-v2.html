@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appetite for Business - Microsoft 365 Consultancy</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#3d2c6e',
+                            purple: '#5c4d9a',
+                            light: '#8b4ca8',
+                            pink: '#e91e8c',
+                            pinklight: '#f54da5',
+                            yellow: '#ffd000',
+                            yellowlight: '#ffe44d',
+                            bg: '#faf9fc',
+                            cyan: '#00b4d8',
+                        }
+                    },
+                    letterSpacing: {
+                        tighter: '-0.04em',
+                        tight: '-0.02em',
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .text-glow {
+            text-shadow: 0 0 40px rgba(255, 208, 0, 0.3);
+        }
+
+        .clip-text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            background-image: linear-gradient(to right, #e91e8c, #5c4d9a);
+        }
+    </style>
+</head>
+<body class="bg-brand-bg text-slate-900 antialiased selection:bg-brand-pink selection:text-white">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-2 group">
+                <div class="w-8 h-8 relative overflow-hidden rounded-lg bg-gradient-to-tr from-brand-pink via-brand-yellow to-brand-cyan transition-transform duration-500 group-hover:rotate-180"></div>
+                <span class="font-semibold text-xl tracking-tight text-brand-dark">Appetite</span>
+            </a>
+
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#" class="text-sm font-medium text-slate-600 hover:text-brand-pink transition-colors">Our Story</a>
+                <a href="#" class="text-sm font-medium text-slate-600 hover:text-brand-pink transition-colors">Services</a>
+                <a href="#" class="text-sm font-medium text-slate-600 hover:text-brand-pink transition-colors">Training</a>
+                <a href="#" class="text-sm font-medium text-slate-600 hover:text-brand-pink transition-colors">Insights</a>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <a href="#" class="hidden sm:inline-flex text-sm font-medium text-slate-600 hover:text-brand-dark transition-colors">Log in</a>
+                <a href="#" class="inline-flex h-9 items-center justify-center rounded-full bg-brand-dark px-4 text-sm font-medium text-white shadow transition-colors hover:bg-brand-purple">
+                    Contact
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section - AI Led -->
+    <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-brand-dark">
+        <div class="relative z-10 max-w-5xl mx-auto px-6 text-center">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-brand-yellow text-xs font-medium uppercase tracking-widest mb-8 backdrop-blur-sm">
+                <span class="w-2 h-2 rounded-full bg-brand-yellow animate-pulse"></span>
+                Microsoft 365 Consultancy
+            </div>
+            
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-semibold tracking-tighter text-white mb-8 leading-[1.1]">
+                Get more from your technology. <br><em class="font-serif italic text-brand-yellow text-glow">Future-proof</em> your business.
+            </h1>
+            
+            <p class="text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-10 font-light leading-relaxed">
+                A people-first consultancy helping you adopt AI, strengthen governance, and upskill your teams.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#" class="h-12 px-8 rounded-full bg-brand-pink hover:bg-brand-pinklight text-white font-medium transition-all flex items-center gap-2 group">
+                    Book a discovery call
+                    <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                </a>
+                <a href="#" class="h-12 px-8 rounded-full bg-white/10 hover:bg-white/20 border border-white/10 text-white font-medium backdrop-blur-sm transition-all flex items-center">
+                    View our services
+                </a>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce text-white/30">
+            <i data-lucide="chevron-down" class="w-6 h-6"></i>
+        </div>
+    </section>
+
+    <!-- Social Proof -->
+    <section class="py-12 border-b border-slate-200 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <p class="text-center text-sm font-medium text-slate-400 mb-8">TRUSTED BY FORWARD-THINKING ORGANISATIONS</p>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center justify-items-center opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+                <div class="text-xl font-bold tracking-tight text-slate-800">NHS</div>
+                <div class="text-xl font-bold tracking-tight text-slate-800">NSTA</div>
+                <div class="text-xl font-bold tracking-tight text-slate-800">Storegga</div>
+                <div class="text-xl font-bold tracking-tight text-slate-800">Langstane</div>
+                <div class="text-xl font-bold tracking-tight text-slate-800">Red Kite</div>
+                <div class="text-xl font-bold tracking-tight text-slate-800">Aquaterra</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Who We Work With -->
+    <section class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <span class="text-brand-purple font-semibold tracking-wider text-xs uppercase mb-4 block">Who We Work With</span>
+            <h2 class="text-3xl md:text-4xl font-semibold tracking-tighter text-slate-900 mb-6">
+                Built for businesses navigating change.
+            </h2>
+            <p class="text-lg text-slate-600 mb-12 leading-relaxed max-w-2xl mx-auto">
+                We work with SMEs and internal IT teams who are stretched thin, under pressure to modernise, and need a partner who gets it done properly.
+            </p>
+            
+            <div class="grid md:grid-cols-3 gap-6 text-left">
+                <div class="bg-brand-bg p-6 rounded-xl border border-slate-200">
+                    <div class="w-10 h-10 bg-brand-purple/10 rounded-lg flex items-center justify-center mb-4 text-brand-purple">
+                        <i data-lucide="building-2" class="w-5 h-5"></i>
+                    </div>
+                    <h3 class="font-medium text-slate-900 mb-2">Growing SMEs</h3>
+                    <p class="text-sm text-slate-500">Businesses ready to professionalise their systems without enterprise budgets or complexity.</p>
+                </div>
+                <div class="bg-brand-bg p-6 rounded-xl border border-slate-200">
+                    <div class="w-10 h-10 bg-brand-pink/10 rounded-lg flex items-center justify-center mb-4 text-brand-pink">
+                        <i data-lucide="users" class="w-5 h-5"></i>
+                    </div>
+                    <h3 class="font-medium text-slate-900 mb-2">Internal IT Teams</h3>
+                    <p class="text-sm text-slate-500">Small teams who need specialist support to deliver projects they can't resource alone.</p>
+                </div>
+                <div class="bg-brand-bg p-6 rounded-xl border border-slate-200">
+                    <div class="w-10 h-10 bg-brand-yellow/20 rounded-lg flex items-center justify-center mb-4 text-yellow-600">
+                        <i data-lucide="shield-check" class="w-5 h-5"></i>
+                    </div>
+                    <h3 class="font-medium text-slate-900 mb-2">Regulated Industries</h3>
+                    <p class="text-sm text-slate-500">Organisations where security, compliance, and data governance aren't optional.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How We Work -->
+    <section class="py-24 bg-brand-dark text-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="max-w-3xl mx-auto text-center mb-16">
+                <span class="text-brand-yellow font-semibold tracking-wider text-xs uppercase mb-4 block">How We Work</span>
+                <h2 class="text-3xl md:text-4xl font-semibold tracking-tighter mb-6">
+                    A partner, not a vendor.
+                </h2>
+                <p class="text-lg text-white/70 leading-relaxed">
+                    We're not here to sell you licenses and disappear. We meet you where you are, build a plan that fits, and stick around to make sure it works.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white/5 border border-white/10 p-6 rounded-xl">
+                    <div class="w-10 h-10 bg-brand-yellow/20 rounded-lg flex items-center justify-center mb-4 text-brand-yellow">
+                        <i data-lucide="compass" class="w-5 h-5"></i>
+                    </div>
+                    <h3 class="font-medium text-white mb-2">We meet you where you are</h3>
+                    <p class="text-sm text-white/60">Whether you're just starting out or mid-transformation, we adapt to your reality.</p>
+                </div>
+                <div class="bg-white/5 border border-white/10 p-6 rounded-xl">
+                    <div class="w-10 h-10 bg-brand-pink/20 rounded-lg flex items-center justify-center mb-4 text-brand-pink">
+                        <i data-lucide="hand-helping" class="w-5 h-5"></i>
+                    </div>
+                    <h3 class="font-medium text-white mb-2">We guide, not dictate</h3>
+                    <p class="text-sm text-white/60">Advisory that respects your knowledge. We work with you, not around you.</p>
+                </div>
+                <div class="bg-white/5 border border-white/10 p-6 rounded-xl">
+                    <div class="w-10 h-10 bg-brand-cyan/20 rounded-lg flex items-center justify-center mb-4 text-brand-cyan">
+                        <i data-lucide="heart-handshake" class="w-5 h-5"></i>
+                    </div>
+                    <h3 class="font-medium text-white mb-2">We're in it for the long haul</h3>
+                    <p class="text-sm text-white/60">Not a one-off project. We build relationships that last beyond the initial engagement.</p>
+                </div>
+                <div class="bg-white/5 border border-white/10 p-6 rounded-xl">
+                    <div class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center mb-4 text-white">
+                        <i data-lucide="user-check" class="w-5 h-5"></i>
+                    </div>
+                    <h3 class="font-medium text-white mb-2">People first, always</h3>
+                    <p class="text-sm text-white/60">Technology is only useful if your team can use it. We never forget the human side.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Problems We Solve -->
+    <section class="py-24 bg-brand-bg">
+        <div class="max-w-3xl mx-auto px-6 text-center">
+            <span class="text-brand-purple font-semibold tracking-wider text-xs uppercase mb-4 block">The Reality</span>
+            <h2 class="text-3xl md:text-5xl font-semibold tracking-tighter text-brand-dark mb-6">
+                Sound familiar?
+            </h2>
+            <p class="text-lg text-slate-600 mb-12 leading-relaxed">
+                These are the problems we solve every day.
+            </p>
+
+            <div class="grid gap-4 text-left bg-white p-2 rounded-2xl shadow-sm border border-slate-200/60">
+                <div class="p-6 rounded-xl bg-slate-50 hover:bg-white transition-colors border border-transparent hover:border-slate-100 flex gap-4 items-start">
+                    <div class="p-2 bg-brand-purple/10 rounded-lg text-brand-purple shrink-0">
+                        <i data-lucide="help-circle" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-medium text-slate-900">"We know we need to do something with AI, but we don't know where to start."</h3>
+                        <p class="text-sm text-slate-500 mt-1">The pressure is real, but the path forward isn't clear. We help you cut through the noise and build a practical plan.</p>
+                    </div>
+                </div>
+                <div class="p-6 rounded-xl bg-slate-50 hover:bg-white transition-colors border border-transparent hover:border-slate-100 flex gap-4 items-start">
+                    <div class="p-2 bg-brand-pink/10 rounded-lg text-brand-pink shrink-0">
+                        <i data-lucide="shield-alert" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-medium text-slate-900">"We're in a regulated industry. Security and compliance aren't optional."</h3>
+                        <p class="text-sm text-slate-500 mt-1">Data governance, permissions, audit trails. We make sure your M365 environment meets the standards you're held to.</p>
+                    </div>
+                </div>
+                <div class="p-6 rounded-xl bg-slate-50 hover:bg-white transition-colors border border-transparent hover:border-slate-100 flex gap-4 items-start">
+                    <div class="p-2 bg-brand-yellow/20 rounded-lg text-yellow-600 shrink-0">
+                        <i data-lucide="user-x" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-medium text-slate-900">"We've got the tools, but our people aren't using them properly."</h3>
+                        <p class="text-sm text-slate-500 mt-1">Licenses paid, value missing. We train teams to actually use what you've invested in.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI & Automation (Standout Section) -->
+    <section class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="bg-brand-bg rounded-3xl p-8 md:p-12 lg:p-16 border border-slate-200 relative overflow-hidden">
+                <div class="grid lg:grid-cols-2 gap-12 items-center relative z-10">
+                    <div>
+                        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-purple/10 text-brand-purple text-xs font-medium uppercase tracking-widest mb-6">
+                            <i data-lucide="sparkles" class="w-3 h-3"></i> AI & Automation
+                        </span>
+                        <h2 class="text-3xl md:text-4xl font-semibold tracking-tighter text-slate-900 mb-6">
+                            Adopt AI with <br>
+                            <span class="clip-text-gradient">confidence, not confusion.</span>
+                        </h2>
+                        <p class="text-slate-600 mb-8 text-lg">
+                            We help you implement Copilot, build Power Platform automations, and integrate AI where it delivers real value. Tailored to your industry, your use cases, your people.
+                        </p>
+                        <div class="flex flex-wrap gap-4 mb-8">
+                            <span class="px-4 py-2 bg-white border border-slate-200 rounded-lg text-sm font-medium text-slate-700 shadow-sm">Copilot Readiness</span>
+                            <span class="px-4 py-2 bg-white border border-slate-200 rounded-lg text-sm font-medium text-slate-700 shadow-sm">Process Automation</span>
+                            <span class="px-4 py-2 bg-white border border-slate-200 rounded-lg text-sm font-medium text-slate-700 shadow-sm">Custom Agents</span>
+                        </div>
+                        <a href="#" class="inline-flex items-center text-brand-purple font-medium hover:text-brand-dark transition-colors">
+                            Explore AI services
+                            <i data-lucide="arrow-right" class="ml-2 w-4 h-4"></i>
+                        </a>
+                    </div>
+                    <div class="relative flex justify-center">
+                         <div class="w-64 h-64 bg-gradient-to-tr from-brand-yellow to-brand-pink rounded-full blur-[80px] opacity-40 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
+                         <div class="relative bg-white p-8 rounded-2xl shadow-xl border border-slate-100 max-w-sm rotate-3 hover:rotate-0 transition-transform duration-500">
+                             <div class="flex items-center gap-3 mb-4 border-b border-slate-100 pb-4">
+                                 <div class="w-8 h-8 bg-brand-purple rounded-full flex items-center justify-center">
+                                     <i data-lucide="bot" class="w-4 h-4 text-white"></i>
+                                 </div>
+                                 <div class="text-sm font-medium">Appetite Assistant</div>
+                             </div>
+                             <div class="space-y-3">
+                                 <div class="h-2 bg-slate-100 rounded w-3/4"></div>
+                                 <div class="h-2 bg-slate-100 rounded w-full"></div>
+                                 <div class="h-2 bg-slate-100 rounded w-5/6"></div>
+                             </div>
+                             <div class="mt-6 pt-4 border-t border-slate-100">
+                                 <div class="text-xs text-brand-pink font-medium">Automation complete</div>
+                             </div>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Security & Governance (Dark Section) -->
+    <section class="py-24 bg-brand-dark text-white overflow-hidden relative">
+        <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-16 items-start">
+                <div>
+                    <span class="text-brand-yellow font-semibold tracking-wider text-xs uppercase mb-2 block">Security & Governance</span>
+                    <h2 class="text-3xl md:text-5xl font-semibold tracking-tighter mb-6">Know exactly who has access to what.</h2>
+                    <p class="text-slate-300 text-lg mb-8 leading-relaxed">
+                        Permissions drift. External sharing happens. One wrong click and data is exposed. We audit your setup and put governance in place—especially critical for regulated industries.
+                    </p>
+                    <a href="#" class="inline-flex items-center text-brand-yellow font-medium hover:text-white transition-colors">
+                        Learn about our security audit
+                        <i data-lucide="arrow-right" class="ml-2 w-4 h-4"></i>
+                    </a>
+                </div>
+                
+                <div class="grid sm:grid-cols-2 gap-4">
+                    <div class="bg-white/5 backdrop-blur border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-colors">
+                        <i data-lucide="lock" class="w-8 h-8 text-brand-pink mb-4"></i>
+                        <h4 class="font-medium text-white mb-2">Permissions Review</h4>
+                        <p class="text-sm text-slate-400">Identify and revoke unnecessary access rights across your tenant.</p>
+                    </div>
+                    <div class="bg-white/5 backdrop-blur border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-colors">
+                        <i data-lucide="share-2" class="w-8 h-8 text-brand-yellow mb-4"></i>
+                        <h4 class="font-medium text-white mb-2">External Sharing</h4>
+                        <p class="text-sm text-slate-400">Align sharing policies with your actual business risk appetite.</p>
+                    </div>
+                    <div class="bg-white/5 backdrop-blur border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-colors">
+                        <i data-lucide="file-check" class="w-8 h-8 text-brand-purple mb-4"></i>
+                        <h4 class="font-medium text-white mb-2">Compliance Gaps</h4>
+                        <p class="text-sm text-slate-400">Ensure you meet regulatory standards for data handling.</p>
+                    </div>
+                    <div class="bg-white/5 backdrop-blur border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-colors">
+                        <i data-lucide="shield" class="w-8 h-8 text-slate-200 mb-4"></i>
+                        <h4 class="font-medium text-white mb-2">Awareness</h4>
+                        <p class="text-sm text-slate-400">Train staff to be the first line of defence against threats.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Training & Skills -->
+    <section class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="text-brand-pink font-semibold tracking-wider text-xs uppercase mb-2 block">Training & Skills</span>
+                    <h2 class="text-3xl md:text-4xl font-semibold tracking-tighter text-slate-900 mb-6">Your team has the software. Now give them the skills.</h2>
+                    <p class="text-slate-600 mb-6 text-lg leading-relaxed">
+                        Most employees use a fraction of what's available. We deliver practical, role-specific training that sticks—tailored to how your people actually work, not generic tick-box sessions.
+                    </p>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center gap-3 text-slate-700">
+                            <i data-lucide="check" class="w-5 h-5 text-brand-pink"></i>
+                            Role-based M365 training
+                        </li>
+                        <li class="flex items-center gap-3 text-slate-700">
+                            <i data-lucide="check" class="w-5 h-5 text-brand-pink"></i>
+                            Copilot prompting workshops
+                        </li>
+                        <li class="flex items-center gap-3 text-slate-700">
+                            <i data-lucide="check" class="w-5 h-5 text-brand-pink"></i>
+                            Digital champions programmes
+                        </li>
+                        <li class="flex items-center gap-3 text-slate-700">
+                            <i data-lucide="check" class="w-5 h-5 text-brand-pink"></i>
+                            Industry-specific use cases
+                        </li>
+                    </ul>
+                    <a href="#" class="inline-flex items-center text-brand-pink font-medium hover:text-brand-dark transition-colors">
+                        Explore training options
+                        <i data-lucide="arrow-right" class="ml-2 w-4 h-4"></i>
+                    </a>
+                </div>
+                <div class="bg-brand-bg rounded-2xl border border-slate-200 p-8 flex items-center justify-center min-h-[350px]">
+                    <div class="flex gap-4 items-end">
+                        <div class="w-12 h-24 bg-brand-purple/20 rounded-t-lg"></div>
+                        <div class="w-12 h-32 bg-brand-purple/40 rounded-t-lg"></div>
+                        <div class="w-12 h-48 bg-brand-purple rounded-t-lg shadow-lg"></div>
+                        <div class="w-12 h-40 bg-brand-purple/60 rounded-t-lg"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Systems & Tools -->
+    <section class="py-24 bg-brand-bg">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="order-2 lg:order-1 bg-white rounded-2xl border border-slate-200 p-8 flex items-center justify-center min-h-[350px]">
+                    <div class="grid grid-cols-2 gap-4 w-2/3 opacity-80">
+                        <div class="bg-slate-50 p-4 rounded-lg shadow-sm h-28 w-full border border-slate-100"></div>
+                        <div class="bg-slate-50 p-4 rounded-lg shadow-sm h-28 w-full mt-6 border border-brand-purple/20"></div>
+                        <div class="bg-slate-50 p-4 rounded-lg shadow-sm h-28 w-full -mt-6 border border-brand-pink/20"></div>
+                        <div class="bg-slate-50 p-4 rounded-lg shadow-sm h-28 w-full border border-slate-100"></div>
+                    </div>
+                </div>
+                <div class="order-1 lg:order-2">
+                    <span class="text-brand-cyan font-semibold tracking-wider text-xs uppercase mb-2 block">Systems & Tools</span>
+                    <h2 class="text-3xl md:text-4xl font-semibold tracking-tighter text-slate-900 mb-6">Stop working around your tools. Start working with them.</h2>
+                    <p class="text-slate-600 mb-6 text-lg leading-relaxed">
+                        Tangled SharePoint? Sprawling Teams channels? We audit what you have, fix what's broken, and structure it to scale. The foundation everything else builds on.
+                    </p>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center gap-3 text-slate-700">
+                            <i data-lucide="check" class="w-5 h-5 text-brand-cyan"></i>
+                            SharePoint restructuring
+                        </li>
+                        <li class="flex items-center gap-3 text-slate-700">
+                            <i data-lucide="check" class="w-5 h-5 text-brand-cyan"></i>
+                            Teams consolidation
+                        </li>
+                        <li class="flex items-center gap-3 text-slate-700">
+                            <i data-lucide="check" class="w-5 h-5 text-brand-cyan"></i>
+                            Migrations and integrations
+                        </li>
+                    </ul>
+                    <a href="#" class="inline-flex items-center text-brand-cyan font-medium hover:text-brand-dark transition-colors">
+                        Learn more about systems
+                        <i data-lucide="arrow-right" class="ml-2 w-4 h-4"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Study / Proof -->
+    <section class="py-20 bg-brand-purple text-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-12">
+                <div class="md:w-1/2">
+                    <h2 class="text-6xl md:text-8xl font-bold tracking-tighter mb-2">£500k</h2>
+                    <p class="text-2xl text-white/80 font-light">Saved weekly.</p>
+                </div>
+                <div class="md:w-1/2 md:border-l md:border-white/20 md:pl-12">
+                    <p class="text-xl leading-relaxed mb-8 text-white/80">
+                        "200-person business. Digital skills programme. One hour freed per employee per week. At their charge-out rate, that's half a million a week."
+                    </p>
+                    <a href="#" class="bg-white text-brand-purple hover:bg-slate-100 px-6 py-3 rounded-lg font-semibold inline-flex items-center transition-colors">
+                        Read customer stories
+                        <i data-lucide="arrow-right" class="ml-2 w-4 h-4"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-24 bg-white text-center">
+        <div class="max-w-3xl mx-auto px-6">
+            <h2 class="text-4xl font-semibold tracking-tighter text-brand-dark mb-4">Not sure where to start?</h2>
+            <p class="text-lg text-slate-600 mb-8">That's exactly what we're here for. Let's figure it out together.</p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#" class="h-12 px-8 rounded-full bg-brand-dark hover:bg-brand-purple text-white font-medium transition-all flex items-center gap-2 shadow-lg hover:shadow-xl hover:-translate-y-0.5">
+                    Book a discovery call
+                </a>
+                <a href="#" class="h-12 px-8 rounded-full text-slate-600 hover:text-brand-dark font-medium transition-colors">
+                    Contact us
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brand-dark text-slate-400 py-16 border-t border-white/10 text-sm">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 mb-12">
+                <div class="col-span-2 lg:col-span-2">
+                    <a href="#" class="flex items-center gap-2 mb-6 text-white">
+                        <div class="w-6 h-6 rounded bg-gradient-to-tr from-brand-pink to-brand-yellow"></div>
+                        <span class="font-semibold text-lg tracking-tight">Appetite</span>
+                    </a>
+                    <p class="mb-6 max-w-xs leading-relaxed">
+                        Your trusted Microsoft 365 partner. AI, security, training, and systems that work.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-medium mb-4">Services</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="hover:text-brand-yellow transition-colors">AI & Automation</a></li>
+                        <li><a href="#" class="hover:text-brand-yellow transition-colors">Security & Compliance</a></li>
+                        <li><a href="#" class="hover:text-brand-yellow transition-colors">Training & Skills</a></li>
+                        <li><a href="#" class="hover:text-brand-yellow transition-colors">Systems & Tools</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-medium mb-4">Company</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="hover:text-brand-yellow transition-colors">Our Story</a></li>
+                        <li><a href="#" class="hover:text-brand-yellow transition-colors">Careers</a></li>
+                        <li><a href="#" class="hover:text-brand-yellow transition-colors">Impact</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-medium mb-4">Resources</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="hover:text-brand-yellow transition-colors">Customer Stories</a></li>
+                        <li><a href="#" class="hover:text-brand-yellow transition-colors">Courses</a></li>
+                        <li><a href="#" class="hover:text-brand-yellow transition-colors">Insights</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-medium mb-4">Contact</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="hover:text-brand-yellow transition-colors">Get in touch</a></li>
+                        <li><a href="#" class="hover:text-brand-yellow transition-colors">01224 824111</a></li>
+                        <li><a href="#" class="hover:text-brand-yellow transition-colors">LinkedIn</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p>© 2024 Appetite for Business. All Rights Reserved.</p>
+                <div class="flex gap-6">
+                    <a href="#" class="hover:text-white transition-colors">Privacy</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms</a>
+                    <a href="#" class="hover:text-white transition-colors">AI Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+
+</body>
+</html>
