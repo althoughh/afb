@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The True Cost of Managing M365 Internally</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --brand-dark: #3d2c6e;
+            --brand-pink: #e91e8c;
+            --brand-pink-light: #fef0f8;
+            --brand-pink-mid: #fbd5ed;
+            --brand-yellow: #ffd000;
+            --brand-bg: #faf9fc;
+            --text-primary: #1a1a2e;
+            --text-secondary: #555568;
+            --text-muted: #8888a0;
+            --border: #e4e4ec;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--brand-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- Hero --- */
+        .hero {
+            background: var(--brand-dark);
+            color: #fff;
+            padding: 72px 24px 56px;
+            text-align: center;
+        }
+        .hero-label {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--brand-pink);
+            margin-bottom: 16px;
+        }
+        .hero h1 {
+            font-size: clamp(26px, 4.5vw, 40px);
+            font-weight: 700;
+            line-height: 1.15;
+            max-width: 680px;
+            margin: 0 auto 16px;
+            letter-spacing: -0.03em;
+        }
+        .hero p {
+            font-size: 16px;
+            color: rgba(255,255,255,0.65);
+            max-width: 520px;
+            margin: 0 auto;
+            line-height: 1.65;
+        }
+
+        /* --- Layout --- */
+        .container {
+            max-width: 920px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* --- Configurator --- */
+        .config-section {
+            padding: 48px 0 16px;
+        }
+        .config-row {
+            display: flex;
+            align-items: start;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .config-row-label {
+            flex-shrink: 0;
+            width: 160px;
+            padding-top: 6px;
+        }
+        .config-row-label h3 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+        .config-row-label p {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+        .config-row-content {
+            flex: 1;
+        }
+
+        /* Chip toggles */
+        .chip-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 9px 16px;
+            border: 1.5px solid var(--border);
+            border-radius: 100px;
+            background: var(--card-bg);
+            font-family: inherit;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: all 0.15s ease;
+            user-select: none;
+        }
+        .chip:hover {
+            border-color: var(--brand-pink-mid);
+        }
+        .chip.selected {
+            border-color: var(--brand-pink);
+            background: var(--brand-pink-light);
+            color: var(--brand-pink);
+            font-weight: 600;
+        }
+        .chip-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            border: 1.5px solid var(--border);
+            transition: all 0.15s ease;
+            flex-shrink: 0;
+        }
+        .chip.selected .chip-dot {
+            background: var(--brand-pink);
+            border-color: var(--brand-pink);
+            box-shadow: 0 0 0 2px var(--brand-pink-light);
+        }
+
+        /* Size chips */
+        .size-chip {
+            padding: 9px 18px;
+            border: 1.5px solid var(--border);
+            border-radius: 100px;
+            background: var(--card-bg);
+            font-family: inherit;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            color: var(--text-primary);
+        }
+        .size-chip:hover {
+            border-color: var(--brand-pink-mid);
+        }
+        .size-chip.selected {
+            border-color: var(--brand-pink);
+            background: var(--brand-pink);
+            color: #fff;
+            font-weight: 600;
+        }
+
+        /* Select all */
+        .select-all-link {
+            font-size: 12px;
+            color: var(--brand-pink);
+            font-weight: 500;
+            cursor: pointer;
+            margin-top: 10px;
+            display: inline-block;
+        }
+        .select-all-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Divider */
+        .config-divider {
+            height: 1px;
+            background: var(--border);
+            margin: 0 0 40px;
+        }
+
+        /* --- Results --- */
+        .results-section {
+            background: var(--card-bg);
+            border-top: 1px solid var(--border);
+            padding: 48px 0 64px;
+        }
+        .results-empty {
+            text-align: center;
+            padding: 40px 24px;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .results-intro {
+            margin-bottom: 32px;
+        }
+        .results-intro h2 {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 6px;
+        }
+        .results-intro h2 span {
+            color: var(--brand-pink);
+        }
+        .results-intro p {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* Role rows */
+        .roles-table {
+            width: 100%;
+            margin-bottom: 32px;
+        }
+        .role-row {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: start;
+            gap: 20px;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .role-row:first-child {
+            border-top: 1px solid var(--border);
+        }
+        .role-name {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 3px;
+        }
+        .role-desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            margin-bottom: 8px;
+        }
+        .role-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+        .role-tag {
+            font-size: 11px;
+            font-weight: 500;
+            padding: 3px 9px;
+            border-radius: 100px;
+            background: var(--brand-pink-light);
+            color: var(--brand-pink);
+        }
+        .role-cost {
+            text-align: right;
+            white-space: nowrap;
+            padding-top: 2px;
+        }
+        .role-cost .amount {
+            font-size: 17px;
+            font-weight: 700;
+        }
+        .role-cost .period {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 1px;
+        }
+
+        /* Summary strip */
+        .summary-strip {
+            background: var(--brand-dark);
+            border-radius: 14px;
+            padding: 32px;
+            color: #fff;
+            margin-bottom: 36px;
+        }
+        .summary-numbers {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 28px;
+            margin-bottom: 24px;
+        }
+        .summary-item {
+            text-align: center;
+        }
+        .summary-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: rgba(255,255,255,0.45);
+            margin-bottom: 4px;
+        }
+        .summary-value {
+            font-size: 26px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+        .summary-value.pink {
+            color: var(--brand-pink);
+        }
+        .summary-value.yellow {
+            color: var(--brand-yellow);
+        }
+        .summary-foot {
+            font-size: 12px;
+            color: rgba(255,255,255,0.35);
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 18px;
+            line-height: 1.7;
+        }
+
+        /* Hidden costs */
+        .hidden-costs {
+            margin-bottom: 8px;
+        }
+        .hidden-costs h3 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+        .cost-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 10px;
+        }
+        .cost-card {
+            display: flex;
+            gap: 12px;
+            padding: 14px 16px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            background: var(--brand-bg);
+        }
+        .cost-icon {
+            flex-shrink: 0;
+            width: 28px;
+            height: 28px;
+            border-radius: 7px;
+            background: var(--brand-pink-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .cost-icon svg {
+            width: 14px;
+            height: 14px;
+            stroke: var(--brand-pink);
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        .cost-card h4 {
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 1px;
+        }
+        .cost-card p {
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.45;
+        }
+
+        /* CTA */
+        .cta-section {
+            padding: 56px 24px;
+            text-align: center;
+            border-top: 1px solid var(--border);
+        }
+        .cta-section h2 {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 10px;
+        }
+        .cta-section p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            max-width: 460px;
+            margin: 0 auto 24px;
+        }
+        .cta-btn {
+            display: inline-block;
+            padding: 13px 32px;
+            background: var(--brand-pink);
+            color: #fff;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 600;
+            border: none;
+            border-radius: 100px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+        .cta-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 20px rgba(233, 30, 140, 0.35);
+        }
+
+        /* Responsive */
+        @media (max-width: 700px) {
+            .config-row {
+                flex-direction: column;
+                gap: 12px;
+            }
+            .config-row-label {
+                width: 100%;
+            }
+            .role-row {
+                grid-template-columns: 1fr;
+            }
+            .role-cost {
+                text-align: left;
+            }
+            .summary-numbers {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <span class="hero-label">Pricing Reality Check</span>
+        <h1>What does it actually cost to manage Microsoft 365 properly?</h1>
+        <p>Select what your organisation needs below. We'll show you the team you'd have to build internally to cover it.</p>
+    </section>
+
+    <section class="config-section">
+        <div class="container">
+
+            <!-- Setup row -->
+            <div class="config-row">
+                <div class="config-row-label">
+                    <h3>Setup &amp; foundations</h3>
+                    <p>One-off project work</p>
+                </div>
+                <div class="config-row-content">
+                    <div class="chip-group" id="setup-chips"></div>
+                    <span class="select-all-link" data-cat="setup">Select all</span>
+                </div>
+            </div>
+
+            <div class="config-divider"></div>
+
+            <!-- Ongoing row -->
+            <div class="config-row">
+                <div class="config-row-label">
+                    <h3>Ongoing management</h3>
+                    <p>Permanent responsibilities</p>
+                </div>
+                <div class="config-row-content">
+                    <div class="chip-group" id="ongoing-chips"></div>
+                    <span class="select-all-link" data-cat="ongoing">Select all</span>
+                </div>
+            </div>
+
+            <div class="config-divider"></div>
+
+            <!-- Size row -->
+            <div class="config-row">
+                <div class="config-row-label">
+                    <h3>Organisation size</h3>
+                    <p>Affects seniority of hires</p>
+                </div>
+                <div class="config-row-content">
+                    <div class="chip-group" id="size-chips"></div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="results-section" id="results-section">
+        <div class="container" id="results-content">
+            <div class="results-empty">Select at least one capability above to see your results.</div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2>There's a better way</h2>
+        <p>Get access to all of these capabilities through specialists who do this every day, without the overhead of building an internal team.</p>
+        <a href="#" class="cta-btn">Talk to Appetite for Business</a>
+    </section>
+
+<script>
+const services = [
+    { id: 'sharepoint', name: 'SharePoint restructure', category: 'setup' },
+    { id: 'permissions', name: 'Permissions & access controls', category: 'setup' },
+    { id: 'governance', name: 'Governance framework', category: 'setup' },
+    { id: 'security', name: 'Security posture review', category: 'setup' },
+    { id: 'ai_readiness', name: 'AI & Copilot readiness', category: 'setup' },
+    { id: 'training_initial', name: 'Team training & adoption', category: 'setup' },
+
+    { id: 'access_reviews', name: 'Ongoing access reviews', category: 'ongoing' },
+    { id: 'policy_mgmt', name: 'Policy & compliance monitoring', category: 'ongoing' },
+    { id: 'site_lifecycle', name: 'SharePoint site lifecycle', category: 'ongoing' },
+    { id: 'updates', name: 'M365 updates & features', category: 'ongoing' },
+    { id: 'user_support', name: 'User support & new starters', category: 'ongoing' },
+    { id: 'ai_ongoing', name: 'AI adoption & optimisation', category: 'ongoing' },
+];
+
+const sizes = [
+    { id: 'small', label: '10\u201350 employees' },
+    { id: 'medium', label: '50\u2013150 employees' },
+    { id: 'large', label: '150\u2013300 employees' },
+    { id: 'xlarge', label: '300+' },
+];
+
+const roles = [
+    {
+        id: 'admin',
+        title: 'Microsoft 365 Administrator',
+        desc: 'Manages your M365 tenant day-to-day: SharePoint architecture, Teams config, user provisioning, updates and troubleshooting.',
+        triggers: ['sharepoint', 'permissions', 'security', 'updates', 'site_lifecycle', 'user_support'],
+        minTriggers: 1,
+        salary: { small: 38000, medium: 45000, large: 52000, xlarge: 58000 },
+    },
+    {
+        id: 'governance',
+        title: 'Information Governance & Compliance Specialist',
+        desc: 'Designs and maintains data classification, retention policies, access controls and compliance reporting. Essential in regulated industries.',
+        triggers: ['governance', 'permissions', 'policy_mgmt', 'access_reviews'],
+        minTriggers: 1,
+        salary: { small: 40000, medium: 48000, large: 55000, xlarge: 62000 },
+    },
+    {
+        id: 'security',
+        title: 'Security & Identity Specialist',
+        desc: 'Configures and monitors conditional access, DLP, Defender, MFA and threat response. A different skillset to administration.',
+        triggers: ['security', 'permissions', 'access_reviews', 'ai_readiness'],
+        minTriggers: 2,
+        salary: { small: 48000, medium: 55000, large: 62000, xlarge: 70000 },
+    },
+    {
+        id: 'adoption',
+        title: 'Change & Adoption Manager',
+        desc: 'Runs training programmes, builds documentation, manages onboarding and ensures your team actually uses the tools properly.',
+        triggers: ['training_initial', 'user_support', 'ai_ongoing'],
+        minTriggers: 1,
+        salary: { small: 35000, medium: 42000, large: 48000, xlarge: 52000 },
+    },
+    {
+        id: 'ai',
+        title: 'AI & Copilot Lead',
+        desc: 'Manages Copilot deployment, develops department-specific use cases, coaches teams on prompting and monitors AI governance.',
+        triggers: ['ai_readiness', 'ai_ongoing'],
+        minTriggers: 1,
+        salary: { small: 52000, medium: 58000, large: 65000, xlarge: 72000 },
+    },
+];
+
+const NI_RATE = 0.138;
+const NI_THRESHOLD = 9100;
+const PENSION_RATE = 0.03;
+const RECRUIT_RATE = 0.15;
+
+let selected = new Set();
+let size = 'medium';
+
+function serviceMap() {
+    const m = {};
+    services.forEach(s => m[s.id] = s.name);
+    return m;
+}
+
+function renderChips() {
+    ['setup', 'ongoing'].forEach(cat => {
+        const el = document.getElementById(cat + '-chips');
+        el.innerHTML = '';
+        services.filter(s => s.category === cat).forEach(s => {
+            const chip = document.createElement('button');
+            chip.className = 'chip' + (selected.has(s.id) ? ' selected' : '');
+            chip.innerHTML = `<span class="chip-dot"></span>${s.name}`;
+            chip.addEventListener('click', () => { toggle(s.id); });
+            el.appendChild(chip);
+        });
+    });
+}
+
+function renderSizes() {
+    const el = document.getElementById('size-chips');
+    el.innerHTML = '';
+    sizes.forEach(s => {
+        const chip = document.createElement('button');
+        chip.className = 'size-chip' + (size === s.id ? ' selected' : '');
+        chip.textContent = s.label;
+        chip.addEventListener('click', () => { size = s.id; renderSizes(); renderResults(); });
+        el.appendChild(chip);
+    });
+}
+
+function renderResults() {
+    const el = document.getElementById('results-content');
+    if (selected.size === 0) {
+        el.innerHTML = '<div class="results-empty">Select at least one capability above to see your results.</div>';
+        return;
+    }
+
+    const needed = roles.filter(r => r.triggers.filter(t => selected.has(t)).length >= r.minTriggers);
+    if (needed.length === 0) {
+        el.innerHTML = '<div class="results-empty">Select more capabilities to see the team you\'d need.</div>';
+        return;
+    }
+
+    const sMap = serviceMap();
+    const totalSalary = needed.reduce((s, r) => s + r.salary[size], 0);
+    const totalNI = needed.reduce((s, r) => s + ((r.salary[size] - NI_THRESHOLD) * NI_RATE), 0);
+    const totalPension = totalSalary * PENSION_RATE;
+    const totalCost = totalSalary + totalNI + totalPension;
+    const totalRecruit = needed.reduce((s, r) => s + (r.salary[size] * RECRUIT_RATE), 0);
+
+    const rolesHTML = needed.map(r => {
+        const tags = r.triggers.filter(t => selected.has(t)).map(t => sMap[t]).filter(Boolean);
+        return `
+            <div class="role-row">
+                <div>
+                    <div class="role-name">${r.title}</div>
+                    <div class="role-desc">${r.desc}</div>
+                    <div class="role-tags">${tags.map(t => `<span class="role-tag">${t}</span>`).join('')}</div>
+                </div>
+                <div class="role-cost">
+                    <div class="amount">£${r.salary[size].toLocaleString()}</div>
+                    <div class="period">per year</div>
+                </div>
+            </div>`;
+    }).join('');
+
+    const svgClock = '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>';
+    const svgTrend = '<svg viewBox="0 0 24 24"><path d="M23 6l-9.5 9.5-5-5L1 18"/><path d="M17 6h6v6"/></svg>';
+    const svgBook = '<svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>';
+    const svgDoor = '<svg viewBox="0 0 24 24"><path d="M18 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V4a2 2 0 00-2-2z"/><circle cx="15" cy="12" r="1"/></svg>';
+    const svgTool = '<svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>';
+    const svgSun = '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>';
+
+    el.innerHTML = `
+        <div class="results-intro">
+            <h2>You'd need to hire at minimum <span>${needed.length} ${needed.length === 1 ? 'person' : 'people'}</span></h2>
+            <p>Each role below requires a different skillset. They're difficult to combine into fewer hires without significant compromise.</p>
+        </div>
+
+        <div class="roles-table">${rolesHTML}</div>
+
+        <div class="summary-strip">
+            <div class="summary-numbers">
+                <div class="summary-item">
+                    <div class="summary-label">FTE Roles</div>
+                    <div class="summary-value">${needed.length}</div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-label">Combined Salary</div>
+                    <div class="summary-value">£${totalSalary.toLocaleString()}</div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-label">Total Employer Cost</div>
+                    <div class="summary-value yellow">£${Math.round(totalCost).toLocaleString()}</div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-label">Recruitment Fees</div>
+                    <div class="summary-value pink">£${Math.round(totalRecruit).toLocaleString()}</div>
+                </div>
+            </div>
+            <div class="summary-foot">
+                Employer cost includes salary + NI (13.8%) + pension (3%). Recruitment fees estimated at 15% per hire (one-off).
+            </div>
+        </div>
+
+        <div class="hidden-costs">
+            <h3>And that's before you factor in...</h3>
+            <div class="cost-grid">
+                <div class="cost-card">
+                    <div class="cost-icon">${svgClock}</div>
+                    <div>
+                        <h4>8 weeks average time to hire</h4>
+                        <p>That's 8 weeks with no one covering these responsibilities.</p>
+                    </div>
+                </div>
+                <div class="cost-card">
+                    <div class="cost-icon">${svgTrend}</div>
+                    <div>
+                        <h4>3 months to full productivity</h4>
+                        <p>New hires need time to learn your environment and data.</p>
+                    </div>
+                </div>
+                <div class="cost-card">
+                    <div class="cost-icon">${svgBook}</div>
+                    <div>
+                        <h4>Ongoing training & certification</h4>
+                        <p>Budget £2,000+ per person per year for courses and exams.</p>
+                    </div>
+                </div>
+                <div class="cost-card">
+                    <div class="cost-icon">${svgDoor}</div>
+                    <div>
+                        <h4>Turnover risk</h4>
+                        <p>Average IT staff tenure is under 3 years. Then you start again.</p>
+                    </div>
+                </div>
+                <div class="cost-card">
+                    <div class="cost-icon">${svgTool}</div>
+                    <div>
+                        <h4>Tooling and licensing</h4>
+                        <p>Advanced security and compliance tools need extra Microsoft licensing.</p>
+                    </div>
+                </div>
+                <div class="cost-card">
+                    <div class="cost-icon">${svgSun}</div>
+                    <div>
+                        <h4>Holiday, sickness, cover</h4>
+                        <p>One person means zero cover. More people means higher cost.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+function toggle(id) {
+    selected.has(id) ? selected.delete(id) : selected.add(id);
+    renderChips();
+    renderResults();
+}
+
+// Select all links
+document.querySelectorAll('.select-all-link').forEach(link => {
+    link.addEventListener('click', () => {
+        const cat = link.dataset.cat;
+        const catServices = services.filter(s => s.category === cat);
+        const allSelected = catServices.every(s => selected.has(s.id));
+        catServices.forEach(s => allSelected ? selected.delete(s.id) : selected.add(s.id));
+        link.textContent = allSelected ? 'Select all' : 'Deselect all';
+        renderChips();
+        renderResults();
+    });
+});
+
+renderChips();
+renderSizes();
+renderResults();
+</script>
+</body>
+</html>
