@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appetite for Business — The Real Cost of Managing M365</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --pink: #e91e8c;
+            --pink-light: #fef0f8;
+            --pink-glow: rgba(233,30,140,0.12);
+            --dark: #3d2c6e;
+            --yellow: #ffd000;
+            --bg: #faf9fc;
+            --white: #ffffff;
+            --text: #1c1c2e;
+            --text-2: #52526a;
+            --text-3: #9494ab;
+            --border: #e6e5ee;
+            --radius: 12px;
+        }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            -webkit-font-smoothing: antialiased;
+            line-height: 1.6;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            background: var(--dark);
+            color: #fff;
+            padding: 80px 24px 72px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -80px;
+            right: -40px;
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            background: var(--pink);
+            opacity: 0.06;
+            pointer-events: none;
+        }
+        .hero-inner {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+        }
+        .hero-tag {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--pink);
+            margin-bottom: 20px;
+        }
+        .hero h1 {
+            font-size: clamp(28px, 5vw, 44px);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.035em;
+            margin-bottom: 20px;
+        }
+        .hero h1 em {
+            font-style: normal;
+            color: var(--pink);
+        }
+        .hero p {
+            font-size: 17px;
+            color: rgba(255,255,255,0.6);
+            max-width: 520px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* ===== CONTEXT ===== */
+        .context {
+            padding: 40px 24px;
+            max-width: 720px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .context-inner p {
+            font-size: 15px;
+            color: var(--text-2);
+            line-height: 1.7;
+        }
+
+        /* ===== PROBLEM CARDS ===== */
+        .problems {
+            padding: 0 24px 56px;
+            max-width: 860px;
+            margin: 0 auto;
+        }
+        .problems-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+        @media (max-width: 700px) {
+            .problems-grid { grid-template-columns: 1fr; }
+        }
+        .problem-card {
+            padding: 28px 24px;
+            border-radius: 12px;
+            background: var(--white);
+            border: 1px solid var(--border);
+        }
+        .problem-card .num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: var(--dark);
+            color: var(--yellow);
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 14px;
+        }
+        .problem-card h3 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .problem-card p {
+            font-size: 13px;
+            color: var(--text-2);
+            line-height: 1.6;
+        }
+
+        /* ===== CALCULATOR ===== */
+        .calculator {
+            background: #f0eef5;
+            padding: 64px 24px 72px;
+            border-top: 1px solid var(--border);
+        }
+        .calc-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .calc-title-bar {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 48px;
+        }
+        .calc-title-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: var(--dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .calc-title-icon svg {
+            width: 22px;
+            height: 22px;
+            stroke: var(--yellow);
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        .calc-title-bar h2 {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 2px;
+        }
+        .calc-title-bar p {
+            font-size: 13px;
+            color: var(--text-2);
+        }
+
+        /* Steps */
+        .calc-step {
+            margin-bottom: 52px;
+        }
+        .step-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 12px;
+        }
+        .step-num {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: var(--dark);
+            color: var(--yellow);
+            font-size: 14px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .step-header h3 {
+            font-size: 17px;
+            font-weight: 600;
+        }
+        .step-sub {
+            font-size: 13px;
+            color: var(--text-3);
+            margin-bottom: 20px;
+            padding-left: 46px;
+        }
+
+        /* Toggle chips */
+        .chip-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding-left: 46px;
+        }
+        .chip {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 11px 20px 11px 15px;
+            border: 1.5px solid rgba(61,44,110,0.18);
+            border-radius: 8px;
+            background: var(--white);
+            font-family: inherit;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text);
+            cursor: pointer;
+            transition: all 0.18s ease;
+            user-select: none;
+        }
+        .chip:hover { border-color: var(--dark); }
+        .chip.on {
+            border-color: var(--dark);
+            background: var(--dark);
+            color: #fff;
+            font-weight: 600;
+        }
+        .chip-indicator {
+            width: 16px;
+            height: 16px;
+            border-radius: 4px;
+            border: 2px solid rgba(61,44,110,0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.18s ease;
+            flex-shrink: 0;
+        }
+        .chip.on .chip-indicator {
+            border-color: var(--yellow);
+            background: var(--yellow);
+        }
+        .chip.on .chip-indicator svg path {
+            stroke: var(--dark);
+        }
+        .chip-indicator svg {
+            width: 10px;
+            height: 10px;
+            opacity: 0;
+            transition: opacity 0.12s ease;
+        }
+        .chip.on .chip-indicator svg { opacity: 1; }
+
+        .quick-link {
+            display: inline-block;
+            margin-top: 14px;
+            margin-left: 46px;
+            font-size: 12px;
+            color: var(--pink);
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-family: inherit;
+            padding: 0;
+        }
+        .quick-link:hover { text-decoration: underline; }
+
+        /* Size buttons */
+        .size-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding-left: 46px;
+        }
+        .size-btn {
+            padding: 11px 22px;
+            border: 1.5px solid rgba(61,44,110,0.18);
+            border-radius: 8px;
+            background: var(--white);
+            font-family: inherit;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.18s ease;
+            color: var(--text);
+        }
+        .size-btn:hover { border-color: var(--dark); }
+        .size-btn.on {
+            border-color: var(--pink);
+            background: var(--pink);
+            color: #fff;
+            font-weight: 600;
+        }
+
+        /* ===== RESULTS ===== */
+        .results {
+            background: var(--bg);
+            border-top: 1px solid var(--border);
+            padding: 56px 24px 72px;
+        }
+        .results-inner {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .results-empty {
+            text-align: center;
+            padding: 48px 0;
+            color: var(--text-3);
+            font-size: 15px;
+        }
+
+        /* Three columns */
+        .paths-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+        @media (max-width: 800px) {
+            .paths-grid { grid-template-columns: 1fr; }
+        }
+
+        .path-card {
+            border: 1.5px solid var(--border);
+            border-radius: 14px;
+            background: var(--white);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+        .path-card.recommended {
+            border-color: var(--pink);
+            box-shadow: 0 0 0 1px var(--pink), 0 8px 32px rgba(233,30,140,0.10);
+        }
+        .path-top {
+            padding: 24px 22px 20px;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+        }
+        .path-card.recommended .path-top {
+            background: var(--pink-light);
+            border-bottom-color: rgba(233,30,140,0.15);
+        }
+        .path-badge {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--pink);
+            margin-bottom: 8px;
+        }
+        .path-name {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            letter-spacing: -0.01em;
+        }
+        .path-desc {
+            font-size: 12.5px;
+            color: var(--text-2);
+            line-height: 1.55;
+        }
+
+        .path-body {
+            padding: 22px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .path-section-label {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--text-3);
+            margin-bottom: 8px;
+        }
+        .path-role-block {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .path-role-block:last-of-type { border-bottom: none; }
+        .path-role-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 8px;
+        }
+        .path-role-name { font-size: 13px; font-weight: 600; }
+        .path-role-cost { font-size: 13px; font-weight: 700; color: var(--text); white-space: nowrap; }
+        .path-role-desc {
+            font-size: 12px;
+            color: var(--text-3);
+            line-height: 1.5;
+            margin-top: 3px;
+        }
+        .path-role-block.partner-line .path-role-name { color: var(--pink); }
+        .path-role-block.partner-line .path-role-cost { color: var(--pink); }
+        .path-role-block.partner-line .path-role-desc { color: var(--text-2); }
+
+        .path-total {
+            margin-top: auto;
+            padding-top: 18px;
+            border-top: 2px solid var(--border);
+        }
+        .path-card.recommended .path-total {
+            border-top-color: var(--pink);
+        }
+        .path-total-label {
+            font-size: 11px;
+            color: var(--text-3);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 2px;
+        }
+        .path-total-value {
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+        .path-card.recommended .path-total-value {
+            color: var(--pink);
+        }
+        .path-total-note {
+            font-size: 11px;
+            color: var(--text-3);
+            margin-top: 2px;
+        }
+
+        /* Breakdown bar */
+        .breakdown-bar {
+            display: flex;
+            gap: 0;
+            height: 8px;
+            border-radius: 100px;
+            overflow: hidden;
+            margin: 12px 0 6px;
+        }
+        .bar-internal {
+            background: var(--dark);
+            transition: width 0.4s ease;
+        }
+        .bar-partner {
+            background: var(--pink);
+            transition: width 0.4s ease;
+        }
+        .bar-legend {
+            display: flex;
+            gap: 16px;
+            font-size: 11px;
+            color: var(--text-3);
+        }
+        .bar-legend span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .legend-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        /* Hidden costs */
+        .extras {
+            background: var(--white);
+            border-radius: 14px;
+            border: 1px solid var(--border);
+            padding: 28px;
+        }
+        .extras h3 {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        .extras > p {
+            font-size: 13px;
+            color: var(--text-2);
+            margin-bottom: 20px;
+        }
+        .extras-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 8px;
+        }
+        .extra-item {
+            display: flex;
+            gap: 10px;
+            padding: 12px 14px;
+            border-radius: 10px;
+            background: var(--bg);
+        }
+        .extra-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            background: var(--pink-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .extra-icon svg {
+            width: 12px;
+            height: 12px;
+            stroke: var(--pink);
+            fill: none;
+            stroke-width: 2.2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        .extra-item h4 { font-size: 12.5px; font-weight: 600; margin-bottom: 1px; }
+        .extra-item p { font-size: 11.5px; color: var(--text-3); line-height: 1.45; }
+
+        /* ===== CTA ===== */
+        .cta {
+            padding: 64px 24px;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            background: var(--white);
+        }
+        .cta h2 {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 10px;
+        }
+        .cta p {
+            font-size: 14px;
+            color: var(--text-2);
+            max-width: 480px;
+            margin: 0 auto 24px;
+        }
+        .cta-btn {
+            display: inline-block;
+            padding: 14px 36px;
+            background: var(--pink);
+            color: #fff;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 600;
+            border: none;
+            border-radius: 100px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+        .cta-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 24px rgba(233,30,140,0.3);
+        }
+
+        /* Animations */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-in {
+            animation: fadeUp 0.45s ease forwards;
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+    <div class="hero-inner">
+        <span class="hero-tag">Pricing Reality Check</span>
+        <h1>What does it <em>actually cost</em> to manage Microsoft 365 properly?</h1>
+        <p>Whether you hire internally or work with a partner, the scope is the same. Most organisations are surprised by what's really involved.</p>
+    </div>
+</section>
+
+<!-- ===== CONTEXT ===== -->
+<section class="context">
+    <div class="context-inner">
+        <p>For many organisations, hiring internally makes sense. But managing Microsoft 365 properly requires administration, governance, security, training, and increasingly AI expertise. That's rarely one person. Use this tool to see what resourcing each option really costs.</p>
+    </div>
+</section>
+
+<!-- ===== PROBLEM CARDS ===== -->
+<section class="problems">
+    <div class="problems-grid">
+        <div class="problem-card">
+            <div class="num">1</div>
+            <h3>It's never one role</h3>
+            <p>Administration, governance, security and training require different expertise. Asking one person to cover all four creates gaps.</p>
+        </div>
+        <div class="problem-card">
+            <div class="num">2</div>
+            <h3>The setup is the hard part</h3>
+            <p>Restructuring SharePoint, fixing permissions, building a governance framework. This is specialist project work, not BAU.</p>
+        </div>
+        <div class="problem-card">
+            <div class="num">3</div>
+            <h3>AI changes the equation</h3>
+            <p>Copilot exposes every governance gap at machine speed. Organisations need to get their data house in order before AI deployment.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ===== CALCULATOR ===== -->
+<section class="calculator">
+    <div class="calc-container">
+
+        <div class="calc-title-bar">
+            <div class="calc-title-icon">
+                <svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 10h8M8 14h5"/></svg>
+            </div>
+            <div>
+                <h2>Build your scenario</h2>
+                <p>Select what you need, and see the true cost of each resourcing option.</p>
+            </div>
+        </div>
+
+        <!-- Step 1: Setup -->
+        <div class="calc-step">
+            <div class="step-header">
+                <div class="step-num">1</div>
+                <h3>What setup work is needed?</h3>
+            </div>
+            <div class="step-sub">One-off foundational work to get your environment right.</div>
+            <div class="chip-wrap" id="chips-setup"></div>
+            <button class="quick-link" data-cat="setup">Select all</button>
+        </div>
+
+        <!-- Step 2: Ongoing -->
+        <div class="calc-step">
+            <div class="step-header">
+                <div class="step-num">2</div>
+                <h3>What ongoing management is needed?</h3>
+            </div>
+            <div class="step-sub">Permanent responsibilities that don't go away after setup.</div>
+            <div class="chip-wrap" id="chips-ongoing"></div>
+            <button class="quick-link" data-cat="ongoing">Select all</button>
+        </div>
+
+        <!-- Step 3: Size -->
+        <div class="calc-step">
+            <div class="step-header">
+                <div class="step-num">3</div>
+                <h3>How many employees?</h3>
+            </div>
+            <div class="size-wrap" id="sizes"></div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ===== RESULTS ===== -->
+<section class="results">
+    <div class="results-inner" id="results">
+        <div class="results-empty">Select at least one capability above to see your results.</div>
+    </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="cta">
+    <h2>Want to talk through your options?</h2>
+    <p>We'll help you figure out the right mix of internal and external resource for your organisation. No pressure, no pitch.</p>
+    <a href="#" class="cta-btn">Book a conversation</a>
+</section>
+
+<script>
+// ── DATA ──
+const services = [
+    { id:'sp', name:'SharePoint restructure', cat:'setup' },
+    { id:'perm', name:'Permissions & access controls', cat:'setup' },
+    { id:'gov', name:'Governance framework', cat:'setup' },
+    { id:'sec', name:'Security posture review', cat:'setup' },
+    { id:'ai', name:'AI & Copilot readiness', cat:'setup' },
+    { id:'train', name:'Team training & adoption', cat:'setup' },
+
+    { id:'access_rev', name:'Ongoing access reviews', cat:'ongoing' },
+    { id:'policy', name:'Policy & compliance monitoring', cat:'ongoing' },
+    { id:'lifecycle', name:'SharePoint site lifecycle', cat:'ongoing' },
+    { id:'updates', name:'M365 updates & features', cat:'ongoing' },
+    { id:'support', name:'User support & new starters', cat:'ongoing' },
+    { id:'ai_ongoing', name:'AI adoption & optimisation', cat:'ongoing' },
+];
+
+const sizes = [
+    { id:'sm', label:'10\u201350' },
+    { id:'md', label:'50\u2013150' },
+    { id:'lg', label:'150\u2013300' },
+    { id:'xl', label:'300+' },
+];
+
+const roles = [
+    {
+        id:'admin', title:'M365 Administrator',
+        desc:'Manages your M365 tenant, SharePoint architecture, Teams setup, user accounts and day-to-day troubleshooting.',
+        workDesc:'Day-to-day tenant management, SharePoint architecture, Teams configuration, user provisioning and platform troubleshooting.',
+        triggers:['sp','perm','sec','updates','lifecycle','support'], min:1,
+        salary:{sm:38000,md:45000,lg:52000,xl:58000},
+        isCore: true
+    },
+    {
+        id:'gov', title:'Governance & Compliance Specialist',
+        desc:'Builds and maintains your data classification, retention policies, access reviews and compliance reporting.',
+        workDesc:'Data classification policies, retention rules, access control reviews and compliance reporting for regulatory requirements.',
+        triggers:['gov','perm','policy','access_rev'], min:1,
+        salary:{sm:40000,md:48000,lg:55000,xl:62000},
+        isCore: false
+    },
+    {
+        id:'sec', title:'Security & Identity Specialist',
+        desc:'Configures conditional access, DLP, Defender and MFA. Monitors threats and manages identity security.',
+        workDesc:'Conditional access policies, data loss prevention, Defender configuration, MFA enforcement and ongoing threat monitoring.',
+        triggers:['sec','perm','access_rev','ai'], min:2,
+        salary:{sm:48000,md:55000,lg:62000,xl:70000},
+        isCore: false
+    },
+    {
+        id:'adopt', title:'Change & Adoption Manager',
+        desc:'Runs training programmes, creates documentation and onboards new starters so your team uses the tools properly.',
+        workDesc:'Staff training programmes, onboarding documentation, ongoing user support and ensuring tools are adopted across the organisation.',
+        triggers:['train','support','ai_ongoing'], min:1,
+        salary:{sm:35000,md:42000,lg:48000,xl:52000},
+        isCore: false
+    },
+    {
+        id:'ailead', title:'AI & Copilot Lead',
+        desc:'Manages Copilot rollout, builds department use cases, coaches teams on prompting and monitors AI governance.',
+        workDesc:'Copilot deployment strategy, department-specific use cases, prompt coaching, AI usage monitoring and governance.',
+        triggers:['ai','ai_ongoing'], min:1,
+        salary:{sm:52000,md:58000,lg:65000,xl:72000},
+        isCore: false
+    },
+];
+
+const NI = 0.138, NI_T = 9100, PEN = 0.03, REC = 0.15;
+
+let sel = new Set(), sz = 'md';
+
+const checkSVG = `<svg viewBox="0 0 12 12" fill="none"><path d="M2 6.5L4.5 9L10 3" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+
+// ── RENDER ──
+function renderChips() {
+    ['setup','ongoing'].forEach(cat => {
+        const el = document.getElementById('chips-' + cat);
+        el.innerHTML = '';
+        services.filter(s=>s.cat===cat).forEach(s => {
+            const c = document.createElement('button');
+            c.className = 'chip' + (sel.has(s.id) ? ' on' : '');
+            c.innerHTML = `<span class="chip-indicator">${checkSVG}</span>${s.name}`;
+            c.onclick = () => { sel.has(s.id) ? sel.delete(s.id) : sel.add(s.id); render(); };
+            el.appendChild(c);
+        });
+    });
+}
+
+function renderSizes() {
+    const el = document.getElementById('sizes');
+    el.innerHTML = '';
+    sizes.forEach(s => {
+        const b = document.createElement('button');
+        b.className = 'size-btn' + (sz===s.id ? ' on' : '');
+        b.textContent = s.label + ' employees';
+        b.onclick = () => { sz = s.id; render(); };
+        el.appendChild(b);
+    });
+}
+
+function employerCost(salary) {
+    return salary + ((salary - NI_T) * NI) + (salary * PEN);
+}
+
+function fmt(n) { return '£' + Math.round(n).toLocaleString(); }
+
+function renderResults() {
+    const el = document.getElementById('results');
+
+    if (sel.size === 0) {
+        el.innerHTML = '<div class="results-empty">Select at least one capability above to see your results.</div>';
+        return;
+    }
+
+    const needed = roles.filter(r => r.triggers.filter(t => sel.has(t)).length >= r.min);
+    if (needed.length === 0) {
+        el.innerHTML = '<div class="results-empty">Select more capabilities to build your scenario.</div>';
+        return;
+    }
+
+    // Find the "core" hire for hybrid (admin if present, else first role)
+    const coreRole = needed.find(r => r.isCore) || needed[0];
+    const specialistRoles = needed.filter(r => r.id !== coreRole.id);
+
+    // PATH 1: In-house + AFB for setup
+    const p1InternalSalary = needed.reduce((s,r) => s + r.salary[sz], 0);
+    const p1InternalCost = needed.reduce((s,r) => s + employerCost(r.salary[sz]), 0);
+    const p1Recruit = needed.reduce((s,r) => s + (r.salary[sz] * REC), 0);
+
+    // PATH 2: Partner only
+    // No internal salary cost
+
+    // PATH 3: Hybrid
+    const p3InternalCost = employerCost(coreRole.salary[sz]);
+    const p3Recruit = coreRole.salary[sz] * REC;
+
+    // Role list HTML - with description
+    function roleRows(roleList, tag) {
+        return roleList.map(r => {
+            return `<div class="path-role-block ${tag}">
+                <div class="path-role-top">
+                    <span class="path-role-name">${r.title}</span>
+                    <span class="path-role-cost">${fmt(r.salary[sz])}/yr</span>
+                </div>
+                <div class="path-role-desc">${r.desc}</div>
+            </div>`;
+        }).join('');
+    }
+
+    // Partner work list - describes the work, not job titles
+    function partnerWorkRows(roleList) {
+        return roleList.map(r => {
+            return `<div class="path-role-block partner-line">
+                <div class="path-role-desc">${r.workDesc}</div>
+            </div>`;
+        }).join('');
+    }
+
+    const iconClock = '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>';
+    const iconTrend = '<svg viewBox="0 0 24 24"><path d="M23 6l-9.5 9.5-5-5L1 18"/><path d="M17 6h6v6"/></svg>';
+    const iconBook = '<svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>';
+    const iconDoor = '<svg viewBox="0 0 24 24"><path d="M18 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V4a2 2 0 00-2-2z"/><circle cx="15" cy="12.5" r="1"/></svg>';
+    const iconTool = '<svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>';
+    const iconSun = '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>';
+
+    // Internal % for bar
+    const p3InternalPct = specialistRoles.length > 0 ? Math.round((1 / needed.length) * 100) : 100;
+    const p3PartnerPct = 100 - p3InternalPct;
+
+    // Setup services selected
+    const setupSelected = services.filter(s => s.cat === 'setup' && sel.has(s.id)).map(s => s.name);
+    const setupList = setupSelected.length > 0 ? setupSelected.join(', ') : 'Initial environment setup';
+
+    el.innerHTML = `
+        <div class="animate-in">
+
+        <!-- THREE PATHS -->
+        <div class="paths-grid">
+
+            <!-- PATH 1: In-house + AFB setup -->
+            <div class="path-card">
+                <div class="path-top">
+                    <div class="path-name">Hire in-house</div>
+                    <div class="path-desc">Build the full team internally. Use a partner for the initial setup work so new hires start with a clean environment.</div>
+                </div>
+                <div class="path-body">
+                    <div class="path-section-label">You'd hire</div>
+                    ${roleRows(needed, '')}
+
+                    <div style="height:14px"></div>
+                    <div class="path-section-label">Partner handles the setup</div>
+                    <div class="path-role-block partner-line">
+                        <div class="path-role-top">
+                            <span class="path-role-name">Foundational project work</span>
+                            <span class="path-role-cost" style="color:var(--pink)">Get a quote</span>
+                        </div>
+                        <div class="path-role-desc">${setupList}. Delivered as a fixed-scope engagement so your new hires walk into a clean, structured environment from day one.</div>
+                    </div>
+
+                    <div class="path-total">
+                        <div class="path-total-label">Annual internal cost</div>
+                        <div class="path-total-value">${fmt(p1InternalCost)}</div>
+                        <div class="path-total-note">+ ${fmt(p1Recruit)} recruitment (one-off)</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PATH 2: Partner only -->
+            <div class="path-card">
+                <div class="path-top">
+                    <div class="path-name">Use a partner</div>
+                    <div class="path-desc">No internal hires. A specialist partner handles setup and ongoing management as an extension of your team.</div>
+                </div>
+                <div class="path-body">
+                    <div class="path-section-label">Partner covers everything</div>
+                    ${partnerWorkRows(needed)}
+
+                    <div style="height:14px"></div>
+                    <div class="path-section-label">You'd hire</div>
+                    <div class="path-role-block">
+                        <div class="path-role-desc" style="color:var(--text-3)">No internal hires needed</div>
+                    </div>
+
+                    <div class="path-total">
+                        <div class="path-total-label">Annual internal cost</div>
+                        <div class="path-total-value">${fmt(0)}</div>
+                        <div class="path-total-note">Partner pricing on request</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PATH 3: Hybrid -->
+            <div class="path-card recommended">
+                <div class="path-top">
+                    <div class="path-badge">Most common</div>
+                    <div class="path-name">Hire + ongoing partner</div>
+                    <div class="path-desc">Hire your core person internally. A partner handles the specialist work they can't cover alone.</div>
+                </div>
+                <div class="path-body">
+                    <div class="path-section-label">You'd hire</div>
+                    <div class="path-role-block">
+                        <div class="path-role-top">
+                            <span class="path-role-name">${coreRole.title}</span>
+                            <span class="path-role-cost">${fmt(coreRole.salary[sz])}/yr</span>
+                        </div>
+                        <div class="path-role-desc">${coreRole.desc}</div>
+                    </div>
+
+                    <div style="height:14px"></div>
+                    <div class="path-section-label">Partner covers the specialist work</div>
+                    ${specialistRoles.length > 0 ? partnerWorkRows(specialistRoles) : `<div class="path-role-block partner-line"><div class="path-role-desc">Specialist support alongside your internal hire.</div></div>`}
+
+                    <div class="breakdown-bar">
+                        <div class="bar-internal" style="width:${p3InternalPct}%"></div>
+                        <div class="bar-partner" style="width:${p3PartnerPct}%"></div>
+                    </div>
+                    <div class="bar-legend">
+                        <span><span class="legend-dot" style="background:var(--dark)"></span>Internal</span>
+                        <span><span class="legend-dot" style="background:var(--pink)"></span>Partner</span>
+                    </div>
+
+                    <div class="path-total">
+                        <div class="path-total-label">Annual internal cost</div>
+                        <div class="path-total-value">${fmt(p3InternalCost)}</div>
+                        <div class="path-total-note">+ partner fees + ${fmt(p3Recruit)} recruitment</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- HIDDEN COSTS -->
+        <div class="extras">
+            <h3>The costs that don't show up in a salary</h3>
+            <p>Whether you hire one person or five, these apply to every internal hire.</p>
+            <div class="extras-grid">
+                <div class="extra-item">
+                    <div class="extra-icon">${iconClock}</div>
+                    <div><h4>8 weeks to hire</h4><p>That's 8 weeks with no one covering these responsibilities.</p></div>
+                </div>
+                <div class="extra-item">
+                    <div class="extra-icon">${iconTrend}</div>
+                    <div><h4>3 months to ramp up</h4><p>New hires need time to learn your environment, data and team.</p></div>
+                </div>
+                <div class="extra-item">
+                    <div class="extra-icon">${iconBook}</div>
+                    <div><h4>Training & certification</h4><p>£2,000+ per person per year to stay current.</p></div>
+                </div>
+                <div class="extra-item">
+                    <div class="extra-icon">${iconDoor}</div>
+                    <div><h4>Turnover risk</h4><p>Average IT tenure is under 3 years. Then you start again.</p></div>
+                </div>
+                <div class="extra-item">
+                    <div class="extra-icon">${iconTool}</div>
+                    <div><h4>Extra licensing</h4><p>Advanced security and compliance tools need additional Microsoft licences.</p></div>
+                </div>
+                <div class="extra-item">
+                    <div class="extra-icon">${iconSun}</div>
+                    <div><h4>Holiday & sickness cover</h4><p>One person = zero cover. More people = higher cost.</p></div>
+                </div>
+            </div>
+        </div>
+
+        </div>
+    `;
+}
+
+function render() {
+    renderChips();
+    renderSizes();
+    renderResults();
+}
+
+// Quick select all
+document.querySelectorAll('.quick-link').forEach(btn => {
+    btn.onclick = () => {
+        const cat = btn.dataset.cat;
+        const items = services.filter(s => s.cat === cat);
+        const allOn = items.every(s => sel.has(s.id));
+        items.forEach(s => allOn ? sel.delete(s.id) : sel.add(s.id));
+        btn.textContent = allOn ? 'Select all' : 'Deselect all';
+        render();
+    };
+});
+
+render();
+</script>
+</body>
+</html>
