@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get AI Ready in 30 Days — Appetite for Business</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --pink: #e91e8c;
+            --pink-light: #fef0f8;
+            --dark: #3d2c6e;
+            --bg: #faf9fc;
+            --white: #ffffff;
+            --text: #1c1c2e;
+            --text-2: #52526a;
+            --text-3: #9494ab;
+            --border: #e6e5ee;
+        }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            -webkit-font-smoothing: antialiased;
+            line-height: 1.6;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            background: var(--dark);
+            color: #fff;
+            padding: 80px 24px 72px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -100px;
+            right: -60px;
+            width: 340px;
+            height: 340px;
+            border-radius: 50%;
+            background: var(--pink);
+            opacity: 0.06;
+        }
+        .hero-inner {
+            max-width: 680px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+        }
+        .hero-tag {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--pink);
+            margin-bottom: 20px;
+            background: rgba(233,30,140,0.1);
+            padding: 6px 16px;
+            border-radius: 100px;
+        }
+        .hero h1 {
+            font-size: clamp(30px, 5.5vw, 50px);
+            font-weight: 800;
+            line-height: 1.06;
+            letter-spacing: -0.04em;
+            margin-bottom: 22px;
+        }
+        .hero-sub {
+            font-size: 17px;
+            color: rgba(255,255,255,0.55);
+            max-width: 480px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* ===== REALITY STRIP ===== */
+        .reality {
+            padding: 56px 24px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .reality-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+        @media (max-width: 680px) {
+            .reality-grid { grid-template-columns: 1fr; }
+        }
+        .reality-card {
+            padding: 28px 24px;
+            border-radius: 12px;
+            background: var(--white);
+            border: 1px solid var(--border);
+        }
+        .reality-card .rc-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: var(--dark);
+            color: #fff;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 14px;
+        }
+        .reality-card h3 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .reality-card p {
+            font-size: 13px;
+            color: var(--text-2);
+            line-height: 1.6;
+        }
+
+        /* ===== FIRST STEP ===== */
+        .first-step {
+            background: var(--dark);
+            color: #fff;
+            padding: 56px 24px;
+            text-align: center;
+        }
+        .first-step-inner {
+            max-width: 580px;
+            margin: 0 auto;
+        }
+        .first-step h2 {
+            font-size: 26px;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            margin-bottom: 14px;
+            line-height: 1.2;
+        }
+        .first-step p {
+            font-size: 15px;
+            color: rgba(255,255,255,0.55);
+            line-height: 1.7;
+        }
+
+        /* ===== TIMELINE ===== */
+        .timeline-section {
+            padding: 72px 24px;
+            max-width: 860px;
+            margin: 0 auto;
+        }
+        .timeline-section > h2 {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        .timeline {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+            position: relative;
+        }
+        @media (max-width: 700px) {
+            .timeline { grid-template-columns: 1fr; gap: 32px; }
+            .timeline::before { display: none; }
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 28px;
+            left: 56px;
+            right: 56px;
+            height: 3px;
+            background: linear-gradient(to right, var(--dark), var(--pink));
+            border-radius: 2px;
+            z-index: 0;
+        }
+        .tl-card {
+            position: relative;
+            z-index: 1;
+            padding: 0 20px;
+        }
+        .tl-marker {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 22px;
+        }
+        .tl-marker svg {
+            width: 26px;
+            height: 26px;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
+        }
+        .tl-card:nth-child(1) .tl-marker { background: var(--dark); }
+        .tl-card:nth-child(1) .tl-marker svg { stroke: #fff; }
+        .tl-card:nth-child(2) .tl-marker { background: var(--pink); }
+        .tl-card:nth-child(2) .tl-marker svg { stroke: #fff; }
+        .tl-card:nth-child(3) .tl-marker { background: var(--dark); }
+        .tl-card:nth-child(3) .tl-marker svg { stroke: var(--pink); }
+
+        .tl-week {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--pink);
+            margin-bottom: 6px;
+        }
+        .tl-card h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: -0.01em;
+        }
+        .tl-list {
+            list-style: none;
+            padding: 0;
+        }
+        .tl-list li {
+            font-size: 13.5px;
+            color: var(--text-2);
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+            line-height: 1.5;
+        }
+        .tl-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 13px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+        .tl-card:nth-child(1) .tl-list li::before { background: rgba(61,44,110,0.2); }
+        .tl-card:nth-child(2) .tl-list li::before { background: rgba(233,30,140,0.2); }
+        .tl-card:nth-child(3) .tl-list li::before { background: rgba(61,44,110,0.2); }
+
+        /* ===== OUTCOMES ===== */
+        .outcomes-section {
+            background: #f0eef5;
+            padding: 64px 24px;
+            border-top: 1px solid var(--border);
+        }
+        .outcomes-inner {
+            max-width: 860px;
+            margin: 0 auto;
+        }
+        .outcomes-inner > h2 {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 32px;
+            text-align: center;
+        }
+        .outcomes-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+        }
+        @media (max-width: 600px) {
+            .outcomes-grid { grid-template-columns: 1fr; }
+        }
+        .outcome-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 26px;
+            display: flex;
+            gap: 16px;
+            align-items: start;
+        }
+        .outcome-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .outcome-icon svg {
+            width: 20px;
+            height: 20px;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
+        }
+        .outcome-card:nth-child(odd) .outcome-icon { background: var(--dark); }
+        .outcome-card:nth-child(odd) .outcome-icon svg { stroke: #fff; }
+        .outcome-card:nth-child(even) .outcome-icon { background: var(--pink); }
+        .outcome-card:nth-child(even) .outcome-icon svg { stroke: #fff; }
+
+        .outcome-card h3 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .outcome-card p {
+            font-size: 13px;
+            color: var(--text-2);
+            line-height: 1.55;
+        }
+
+        /* ===== WHO ===== */
+        .who-section {
+            padding: 64px 24px;
+            max-width: 720px;
+            margin: 0 auto;
+        }
+        .who-section h2 {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+        .who-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .who-item {
+            display: flex;
+            gap: 14px;
+            align-items: start;
+            padding: 18px 22px;
+            background: var(--white);
+            border-radius: 10px;
+            border: 1px solid var(--border);
+        }
+        .who-check {
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            background: var(--pink);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+        .who-check svg {
+            width: 14px;
+            height: 14px;
+            stroke: #fff;
+            fill: none;
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        .who-item p {
+            font-size: 14px;
+            color: var(--text-2);
+            line-height: 1.55;
+        }
+
+        /* ===== PRICING ===== */
+        .pricing-section {
+            background: var(--dark);
+            color: #fff;
+            padding: 72px 24px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .pricing-section::after {
+            content: '';
+            position: absolute;
+            top: -60px;
+            right: -40px;
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            background: var(--pink);
+            opacity: 0.06;
+        }
+        .pricing-inner {
+            max-width: 560px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .pricing-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--pink);
+            margin-bottom: 16px;
+        }
+        .pricing-amount {
+            font-size: clamp(48px, 8vw, 72px);
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+        .pricing-vat {
+            font-size: 14px;
+            color: rgba(255,255,255,0.35);
+            margin-bottom: 8px;
+        }
+        .pricing-desc {
+            font-size: 16px;
+            color: rgba(255,255,255,0.55);
+            margin-bottom: 36px;
+            line-height: 1.6;
+        }
+        .pricing-includes {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 40px;
+        }
+        .pricing-tag {
+            font-size: 12px;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 100px;
+            background: rgba(255,255,255,0.08);
+            color: rgba(255,255,255,0.65);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .pricing-cta {
+            display: inline-block;
+            padding: 16px 44px;
+            background: var(--pink);
+            color: #fff;
+            font-family: inherit;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 100px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+        .pricing-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(233,30,140,0.35);
+        }
+        .pricing-note {
+            margin-top: 20px;
+            font-size: 13px;
+            color: rgba(255,255,255,0.3);
+        }
+
+        /* ===== BOTTOM ===== */
+        .bottom-section {
+            padding: 64px 24px;
+            max-width: 720px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .bottom-section h2 {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 14px;
+        }
+        .bottom-section p {
+            font-size: 15px;
+            color: var(--text-2);
+            line-height: 1.7;
+        }
+        .bottom-link {
+            display: inline-block;
+            margin-top: 16px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--pink);
+            text-decoration: none;
+        }
+        .bottom-link:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-inner">
+        <span class="hero-tag">Fixed-price engagement</span>
+        <h1>Get AI ready<br>in 30 days</h1>
+        <p class="hero-sub">AI is everywhere. Your competitors are rolling out Copilot. Your board is asking questions. The gap between where you are and where you need to be feels enormous. It doesn't have to be. This is the first step.</p>
+    </div>
+</section>
+
+<!-- REALITY CARDS -->
+<section class="reality">
+    <div class="reality-grid">
+        <div class="reality-card">
+            <div class="rc-num">1</div>
+            <h3>AI won't wait for you</h3>
+            <p>Every week you delay, competitors move further ahead. But rushing into Copilot without clean data creates more problems than it solves.</p>
+        </div>
+        <div class="reality-card">
+            <div class="rc-num">2</div>
+            <h3>Your environment isn't ready</h3>
+            <p>Permissions have drifted. SharePoint is a maze. Sensitive files are shared too widely. AI will expose all of it at machine speed.</p>
+        </div>
+        <div class="reality-card">
+            <div class="rc-num">3</div>
+            <h3>You just need the first step</h3>
+            <p>Forget the five-year roadmap. Get your foundations right in 30 days and everything else becomes easier from there.</p>
+        </div>
+    </div>
+</section>
+
+<!-- FIRST STEP -->
+<section class="first-step">
+    <div class="first-step-inner">
+        <h2>Stop planning. Start with the foundations.</h2>
+        <p>We audit your Microsoft 365 environment, fix what's broken, and train your team. In 30 days you go from "we should probably do something about AI" to genuinely ready.</p>
+    </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="timeline-section">
+    <h2>What happens in 30 days</h2>
+    <div class="timeline">
+
+        <div class="tl-card">
+            <div class="tl-marker">
+                <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+            </div>
+            <div class="tl-week">Week 1</div>
+            <h3>Audit</h3>
+            <ul class="tl-list">
+                <li>Full review of SharePoint structure, permissions and data organisation</li>
+                <li>Security posture assessment: MFA, conditional access, DLP, external sharing</li>
+                <li>Governance gap analysis against your regulatory requirements</li>
+                <li>Copilot readiness scan: what would AI expose if switched on today</li>
+            </ul>
+        </div>
+
+        <div class="tl-card">
+            <div class="tl-marker">
+                <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+            </div>
+            <div class="tl-week">Weeks 2–3</div>
+            <h3>Fix</h3>
+            <ul class="tl-list">
+                <li>SharePoint restructure and cleanup</li>
+                <li>Permissions remediation: remove drift, orphaned shares, "everyone" links</li>
+                <li>Governance framework: data classification, retention policies, access controls</li>
+                <li>Security configuration hardening</li>
+            </ul>
+        </div>
+
+        <div class="tl-card">
+            <div class="tl-marker">
+                <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+            </div>
+            <div class="tl-week">Week 4</div>
+            <h3>Enable</h3>
+            <ul class="tl-list">
+                <li>Team training on the new structure, tools and ways of working</li>
+                <li>Copilot readiness sign-off</li>
+                <li>Handover documentation and operational runbook</li>
+                <li>Recommendations for ongoing management</li>
+            </ul>
+        </div>
+
+    </div>
+</section>
+
+<!-- OUTCOMES -->
+<section class="outcomes-section">
+    <div class="outcomes-inner">
+        <h2>What you walk away with</h2>
+        <div class="outcomes-grid">
+            <div class="outcome-card">
+                <div class="outcome-icon">
+                    <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+                </div>
+                <div>
+                    <h3>A clean, governed environment</h3>
+                    <p>SharePoint restructured, permissions fixed, governance policies in place. Your M365 tenant is organised and controlled.</p>
+                </div>
+            </div>
+            <div class="outcome-card">
+                <div class="outcome-icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                <div>
+                    <h3>AI readiness confirmed</h3>
+                    <p>A readiness report confirming your environment is safe for Copilot deployment, with any remaining risks documented.</p>
+                </div>
+            </div>
+            <div class="outcome-card">
+                <div class="outcome-icon">
+                    <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+                </div>
+                <div>
+                    <h3>A trained, confident team</h3>
+                    <p>Your people know the new structure, understand the governance, and can work effectively from day one.</p>
+                </div>
+            </div>
+            <div class="outcome-card">
+                <div class="outcome-icon">
+                    <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg>
+                </div>
+                <div>
+                    <h3>A clear path forward</h3>
+                    <p>Handover documentation, a runbook for ongoing management, and recommendations for what comes next.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- WHO -->
+<section class="who-section">
+    <h2>This is built for organisations that...</h2>
+    <div class="who-list">
+        <div class="who-item">
+            <div class="who-check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
+            <p>Operate in regulated industries where data governance isn't optional</p>
+        </div>
+        <div class="who-item">
+            <div class="who-check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
+            <p>Know their Microsoft 365 environment has grown messily and needs sorting before AI</p>
+        </div>
+        <div class="who-item">
+            <div class="who-check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
+            <p>Are about to hire an IT lead and want them to walk into a clean environment</p>
+        </div>
+        <div class="who-item">
+            <div class="who-check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
+            <p>Have 50 to 300 employees and don't have the resource to do this themselves</p>
+        </div>
+    </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-section">
+    <div class="pricing-inner">
+        <div class="pricing-label">Fixed price, no surprises</div>
+        <div class="pricing-amount">£9,500</div>
+        <div class="pricing-vat">+ VAT</div>
+        <div class="pricing-desc">Audit, remediation, governance, training and handover. Everything included. Delivered in 30 days.</div>
+        <div class="pricing-includes">
+            <span class="pricing-tag">SharePoint restructure</span>
+            <span class="pricing-tag">Permissions audit & fix</span>
+            <span class="pricing-tag">Governance framework</span>
+            <span class="pricing-tag">Security hardening</span>
+            <span class="pricing-tag">Copilot readiness</span>
+            <span class="pricing-tag">Team training</span>
+            <span class="pricing-tag">Handover & runbook</span>
+        </div>
+        <a href="#" class="pricing-cta">Book a discovery call</a>
+        <div class="pricing-note">30-minute call to confirm this is the right fit for your organisation.</div>
+    </div>
+</section>
+
+<!-- BOTTOM -->
+<section class="bottom-section">
+    <h2>Not sure if you're ready?</h2>
+    <p>Take our free AI Readiness Scorecard. Five minutes, and you'll know exactly where you stand.</p>
+    <a href="#" class="bottom-link">Take the scorecard →</a>
+</section>
+
+</body>
+</html>
